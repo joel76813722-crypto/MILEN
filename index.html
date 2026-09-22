@@ -1,619 +1,1304 @@
 <!DOCTYPE html>
+
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Galaxia de Flores Amarillas Alex Dev</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Milena ✨</title>
 
-    <!--
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-Contáctame:
+<style>
+:root{
+    --gold:#e9c878;
+    --gold2:#fff0b0;
+    --cream:#fff8e8;
+    --dark:#04020a;
+    --purple:#160b22;
+    --pink:#d88ca5;
+}
 
-   * Crea tus diseños sin código
- https://comparte-amor.vercel.app/
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-    * Invitame un café
- https://buymeacoffee.com/alexx.dev
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#04020a;
+    color:white;
+    font-family:'Montserrat',sans-serif;
+}
 
-    * Portafolio Web
- https://alexxdev.vercel.app
+body{
+    cursor:default;
+}
 
-    * Sigueme en tiktok
- https://www.tiktok.com/@alexx.dev?is_from_webapp=1&sender_device=pc
- 
-    * Canal de WhatsApp
- https://whatsapp.com/channel/0029VazQEXq90x2vIdNkrH1p
+#galaxy{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
 
- 
-   * WhatsApp: +52 5587450945
-https://wa.me/525568916053
+.vignette{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+    background:
+        radial-gradient(circle at center,
+        transparent 25%,
+        rgba(0,0,0,.18) 55%,
+        rgba(0,0,0,.72) 100%);
+}
 
+#flowers{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:3;
+    overflow:hidden;
+}
 
--->
+.flower{
+    position:absolute;
+    width:80px;
+    opacity:.72;
+    filter:drop-shadow(0 0 12px rgba(255,214,91,.35));
+    animation:floatFlower linear infinite;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      overflow: hidden;
+@keyframes floatFlower{
+    from{
+        transform:translateY(110vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(-130px) rotate(360deg);
+    }
+}
+
+.layer{
+    position:fixed;
+    inset:0;
+    z-index:5;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    text-align:center;
+    opacity:0;
+}
+
+.layer.active{
+    display:flex;
+    animation:layerIn .9s ease forwards;
+}
+
+.layer.leaving{
+    display:flex;
+    animation:layerOut .55s ease forwards;
+}
+
+@keyframes layerIn{
+    from{
+        opacity:0;
+        transform:scale(1.035);
+        filter:blur(8px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes layerOut{
+    from{
+        opacity:1;
+        transform:scale(1);
+    }
+    to{
+        opacity:0;
+        transform:scale(.97);
+        filter:blur(8px);
+    }
+}
+
+.content{
+    position:relative;
+    z-index:10;
+    max-width:1000px;
+    width:100%;
+}
+
+.eyebrow{
+    color:var(--gold);
+    letter-spacing:6px;
+    text-transform:uppercase;
+    font-size:11px;
+    margin-bottom:22px;
+}
+
+.title{
+    font-family:'Cinzel',serif;
+    font-size:clamp(42px,9vw,105px);
+    font-weight:500;
+    letter-spacing:7px;
+    text-shadow:0 0 35px rgba(233,200,120,.25);
+}
+
+.script{
+    font-family:'Great Vibes',cursive;
+    color:var(--gold2);
+    font-size:clamp(40px,8vw,80px);
+}
+
+.subtitle{
+    max-width:650px;
+    margin:20px auto 0;
+    color:rgba(255,255,255,.75);
+    font-size:14px;
+    line-height:1.9;
+    font-weight:300;
+}
+
+.gold-line{
+    width:90px;
+    height:1px;
+    margin:28px auto;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+.btn{
+    border:1px solid rgba(233,200,120,.6);
+    background:rgba(10,5,16,.65);
+    color:var(--cream);
+    padding:14px 28px;
+    border-radius:50px;
+    font-family:'Montserrat',sans-serif;
+    letter-spacing:2px;
+    font-size:11px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:.3s ease;
+    backdrop-filter:blur(10px);
+}
+
+.btn:hover{
+    background:rgba(233,200,120,.12);
+    box-shadow:0 0 25px rgba(233,200,120,.2);
+    transform:translateY(-2px);
+}
+
+.btn.gold{
+    background:linear-gradient(135deg,#c99e43,#f4d681);
+    color:#201307;
+    border:none;
+    font-weight:600;
+}
+
+.tap{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.45);
+}
+
+/* SOBRE */
+.envelope{
+    width:min(430px,88vw);
+    height:280px;
+    margin:30px auto;
+    position:relative;
+    perspective:1000px;
+    cursor:pointer;
+}
+
+.envelope-body{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(145deg,#302016,#0f0a0c);
+    border:1px solid rgba(233,200,120,.5);
+    box-shadow:0 25px 70px rgba(0,0,0,.55),
+               0 0 40px rgba(233,200,120,.08);
+}
+
+.envelope-flap{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:55%;
+    background:linear-gradient(145deg,#4a3320,#171014);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top;
+    transition:1s ease;
+    z-index:3;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.envelope.open .envelope-flap{
+    transform:rotateX(180deg);
+}
+
+.seal{
+    position:absolute;
+    z-index:5;
+    left:50%;
+    top:52%;
+    transform:translate(-50%,-50%);
+    width:62px;
+    height:62px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle,#f0d47d,#a7792f);
+    color:#34220c;
+    font-family:'Great Vibes',cursive;
+    font-size:27px;
+    box-shadow:0 0 25px rgba(233,200,120,.25);
+}
+
+/* GALAXIA */
+.galaxy-card{
+    padding:35px;
+    border:1px solid rgba(233,200,120,.18);
+    background:rgba(4,2,10,.35);
+    backdrop-filter:blur(8px);
+    border-radius:24px;
+}
+
+.galaxy-title{
+    font-family:'Cinzel',serif;
+    font-size:clamp(28px,5vw,55px);
+    letter-spacing:5px;
+}
+
+/* FOTOS */
+.photo-layer{
+    flex-direction:column;
+}
+
+.photo-frame{
+    position:relative;
+    width:min(380px,78vw);
+    height:min(500px,64vh);
+    padding:9px;
+    background:linear-gradient(145deg,#f5d980,#8b6526,#e7c66e);
+    box-shadow:
+        0 35px 100px rgba(0,0,0,.7),
+        0 0 60px rgba(233,200,120,.12);
+    transform:rotate(-2deg) scale(.95);
+    animation:photoFloat 5s ease-in-out infinite;
+    cursor:pointer;
+}
+
+.photo-frame::before{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px solid rgba(255,255,255,.55);
+    pointer-events:none;
+}
+
+.photo-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+@keyframes photoFloat{
+    0%,100%{transform:rotate(-2deg) translateY(0)}
+    50%{transform:rotate(2deg) translateY(-10px)}
+}
+
+.photo-number{
+    margin-top:22px;
+    color:var(--gold);
+    font-family:'Cinzel',serif;
+    font-size:12px;
+    letter-spacing:4px;
+}
+
+.message-box{
+    max-width:650px;
+    margin-top:18px;
+}
+
+.message-box h2{
+    font-family:'Great Vibes',cursive;
+    color:var(--gold2);
+    font-size:42px;
+    font-weight:400;
+}
+
+.message-box p{
+    margin-top:10px;
+    color:rgba(255,255,255,.75);
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* CARTA */
+.letter{
+    width:min(650px,92vw);
+    max-height:75vh;
+    overflow:auto;
+    padding:45px 35px;
+    background:
+        linear-gradient(145deg,rgba(42,27,18,.94),rgba(17,10,13,.97));
+    border:1px solid rgba(233,200,120,.3);
+    box-shadow:0 30px 100px rgba(0,0,0,.65);
+    border-radius:4px;
+}
+
+.letter::-webkit-scrollbar{
+    width:3px;
+}
+
+.letter::-webkit-scrollbar-thumb{
+    background:var(--gold);
+}
+
+.letter h2{
+    font-family:'Great Vibes',cursive;
+    color:var(--gold2);
+    font-size:52px;
+    font-weight:400;
+}
+
+.letter p{
+    margin-top:22px;
+    line-height:1.9;
+    color:rgba(255,255,255,.76);
+    font-size:14px;
+}
+
+.signature{
+    margin-top:35px;
+    font-family:'Great Vibes',cursive;
+    color:var(--gold);
+    font-size:32px;
+}
+
+/* JUEGO */
+.question-card{
+    width:min(650px,92vw);
+    padding:45px 30px;
+    border:1px solid rgba(233,200,120,.25);
+    background:rgba(8,4,13,.65);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+}
+
+.question-card h2{
+    font-family:'Cinzel',serif;
+    font-size:clamp(25px,5vw,42px);
+    letter-spacing:2px;
+}
+
+.options{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+#thinkBtn{
+    position:relative;
+}
+
+/* FINAL */
+.final-title{
+    font-family:'Great Vibes',cursive;
+    color:var(--gold2);
+    font-size:clamp(65px,14vw,145px);
+    font-weight:400;
+    text-shadow:
+        0 0 15px rgba(255,225,130,.35),
+        0 0 60px rgba(233,200,120,.15);
+}
+
+.final-small{
+    font-family:'Cinzel',serif;
+    font-size:clamp(22px,4vw,38px);
+    letter-spacing:4px;
+}
+
+.final-text{
+    max-width:650px;
+    margin:25px auto;
+    color:rgba(255,255,255,.72);
+    line-height:2;
+    font-size:14px;
+}
+
+/* INDICADOR */
+.progress{
+    position:fixed;
+    top:20px;
+    right:25px;
+    z-index:30;
+    font-family:'Cinzel',serif;
+    font-size:10px;
+    letter-spacing:3px;
+    color:rgba(255,255,255,.45);
+}
+
+.music{
+    position:fixed;
+    top:18px;
+    left:20px;
+    z-index:30;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    border:1px solid rgba(233,200,120,.35);
+    background:rgba(0,0,0,.3);
+    color:var(--gold);
+    cursor:pointer;
+}
+
+@media(max-width:600px){
+    .photo-frame{
+        width:72vw;
+        height:54vh;
     }
 
-    *{
-        cursor: url('flor.png'), auto !important;
-
+    .letter{
+        padding:35px 23px;
     }
 
-    #container {
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(circle at center, #111100 0%, #000000 100%);
-      position: fixed;
-      top: 0;
-      left: 0;
+    .flower{
+        width:55px;
     }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1;
+    .subtitle{
+        font-size:13px;
     }
+}
+</style>
 
-    #modalCarta {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 100;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    #modalCarta.show {
-      display: flex;
-      opacity: 1;
-    }
-
-    #cartaImg {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(255, 204, 0, 0.6);
-      object-fit: contain;
-      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    #cerrarModal {
-      margin-top: 20px;
-      padding: 10px 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      background-color: #ffcc00;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.4);
-      transition: transform 0.2s ease, background-color 0.2s ease;
-    }
-
-    #cerrarModal:active {
-      transform: scale(0.95);
-    }
-
-    @keyframes popIn {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-  </style>
 </head>
 
 <body>
-  <div id="container"></div>
 
-  <div id="modalCarta">
-    <img id="cartaImg" src="" alt="Carta">
-    <button id="cerrarModal">Cerrar</button>
-  </div>
+<canvas id="galaxy"></canvas>
 
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://unpkg.com/three@0.162.0/build/three.module.js",
-        "three/addons/": "https://unpkg.com/three@0.162.0/examples/jsm/"
-      }
+<div class="vignette"></div>
+
+<div id="flowers"></div>
+
+<div class="progress">
+    <span id="current">01</span> / 17
+</div>
+
+<button class="music" id="musicBtn">♫</button>
+
+<audio id="music" loop preload="auto">
+    <source src="talisman.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 01 INTRO -->
+
+<section class="layer active" id="layer1">
+    <div class="content">
+        <div class="eyebrow">Una pequeña sorpresa</div>
+
+```
+    <div class="title">MILENA</div>
+
+    <div class="gold-line"></div>
+
+    <div class="script">Esto es para ti</div>
+
+    <p class="subtitle">
+        No es una declaración exagerada.<br>
+        Tampoco una historia que quiera correr demasiado rápido.
+        Es simplemente una pequeña forma de decirte que hay alguien
+        que disfruta mucho conocerte.
+    </p>
+
+    <br>
+
+    <button class="btn gold" onclick="startExperience()">
+        Abrir sorpresa
+    </button>
+</div>
+
+<div class="tap">Haz clic para comenzar</div>
+```
+
+</section>
+
+<!-- 02 SOBRE -->
+
+<section class="layer" id="layer2">
+    <div class="content">
+        <div class="eyebrow">Capítulo 01</div>
+        <div class="script">Para Milena</div>
+
+```
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+        <div class="envelope-body"></div>
+        <div class="envelope-flap"></div>
+        <div class="seal">M</div>
+    </div>
+
+    <p class="subtitle">
+        Hay cosas que se disfrutan más cuando se descubren poco a poco.
+    </p>
+</div>
+```
+
+</section>
+
+<!-- 03 GALAXIA -->
+
+<section class="layer" id="layer3">
+    <div class="content">
+        <div class="galaxy-card">
+            <div class="eyebrow">Capítulo 02</div>
+
+```
+        <div class="galaxy-title">
+            Entre millones de estrellas...
+        </div>
+
+        <div class="gold-line"></div>
+
+        <p class="subtitle">
+            algunas personas simplemente consiguen llamar
+            nuestra atención de una manera diferente.
+        </p>
+
+        <br>
+
+        <button class="btn gold" onclick="goNext()">
+            Seguir
+        </button>
+    </div>
+</div>
+```
+
+</section>
+
+<!-- 04 FOTO 1 -->
+
+<section class="layer photo-layer" id="layer4">
+    <div class="photo-frame" onclick="goNext()">
+        <img src="mi1.jpg" alt="Milena">
+    </div>
+    <div class="photo-number">MILENA · 01</div>
+    <div class="tap">Toca la fotografía</div>
+</section>
+
+<!-- 05 MENSAJE 1 -->
+
+<section class="layer" id="layer5">
+    <div class="content">
+        <div class="eyebrow">01 · Una mirada</div>
+        <div class="message-box">
+            <h2>Hay miradas...</h2>
+            <p>
+                que no necesitan demasiadas palabras.
+                A veces basta con ver a una persona y sentir
+                que quieres conocer un poco más de ella.
+            </p>
+        </div>
+        <br>
+        <button class="btn" onclick="goNext()">Continuar</button>
+    </div>
+</section>
+
+<!-- 06 FOTO 2 -->
+
+<section class="layer photo-layer" id="layer6">
+    <div class="photo-frame" style="transform:rotate(2deg)" onclick="goNext()">
+        <img src="mi2.jpg" alt="Milena">
+    </div>
+    <div class="photo-number">MILENA · 02</div>
+    <div class="tap">Toca la fotografía</div>
+</section>
+
+<!-- 07 MENSAJE 2 -->
+
+<section class="layer" id="layer7">
+    <div class="content">
+        <div class="eyebrow">02 · Sin hacer ruido</div>
+        <div class="message-box">
+            <h2>Hay personas...</h2>
+            <p>
+                que aparecen sin hacer demasiado ruido,
+                pero terminan dejando una pequeña huella
+                en tus pensamientos.
+            </p>
+        </div>
+        <br>
+        <button class="btn" onclick="goNext()">Continuar</button>
+    </div>
+</section>
+
+<!-- 08 FOTO 3 -->
+
+<section class="layer photo-layer" id="layer8">
+    <div class="photo-frame" style="transform:rotate(-1deg)" onclick="goNext()">
+        <img src="mi3.jpg" alt="Milena">
+    </div>
+    <div class="photo-number">MILENA · 03</div>
+    <div class="tap">Toca la fotografía</div>
+</section>
+
+<!-- 09 MENSAJE 3 -->
+
+<section class="layer" id="layer9">
+    <div class="content">
+        <div class="eyebrow">03 · Poco a poco</div>
+        <div class="message-box">
+            <h2>Y entonces...</h2>
+            <p>
+                empiezas a notar detalles.
+                Una sonrisa, una conversación, una forma de mirar...
+                y algo cambia poquito a poquito.
+            </p>
+        </div>
+        <br>
+        <button class="btn" onclick="goNext()">Continuar</button>
+    </div>
+</section>
+
+<!-- 10 FOTO 4 -->
+
+<section class="layer photo-layer" id="layer10">
+    <div class="photo-frame" style="transform:rotate(2deg)" onclick="goNext()">
+        <img src="mi4.jpg" alt="Milena">
+    </div>
+    <div class="photo-number">MILENA · 04</div>
+    <div class="tap">Toca la fotografía</div>
+</section>
+
+<!-- 11 MENSAJE 4 -->
+
+<section class="layer" id="layer11">
+    <div class="content">
+        <div class="eyebrow">04 · Curiosidad</div>
+        <div class="message-box">
+            <h2>Me dio curiosidad...</h2>
+            <p>
+                saber qué hay detrás de esa sonrisa,
+                conocer tus historias, tus sueños
+                y esa persona que eres cuando nadie está mirando.
+            </p>
+        </div>
+        <br>
+        <button class="btn" onclick="goNext()">Continuar</button>
+    </div>
+</section>
+
+<!-- 12 FOTO 5 -->
+
+<section class="layer photo-layer" id="layer12">
+    <div class="photo-frame" onclick="goNext()">
+        <img src="mi5.jpg" alt="Milena">
+    </div>
+    <div class="photo-number">MILENA · 05</div>
+    <div class="tap">Toca la fotografía</div>
+</section>
+
+<!-- 13 MENSAJE 5 -->
+
+<section class="layer" id="layer13">
+    <div class="content">
+        <div class="eyebrow">05 · Detalles</div>
+        <div class="message-box">
+            <h2>Supongo que...</h2>
+            <p>
+                cuando alguien empieza a importarte,
+                hasta los pequeños detalles comienzan
+                a tener otro significado.
+            </p>
+        </div>
+        <br>
+        <button class="btn" onclick="goNext()">Continuar</button>
+    </div>
+</section>
+
+<!-- 14 FOTO 6 -->
+
+<section class="layer photo-layer" id="layer14">
+    <div class="photo-frame" style="transform:rotate(-2deg)" onclick="goNext()">
+        <img src="mi6.jpg" alt="Milena">
+    </div>
+    <div class="photo-number">MILENA · 06</div>
+    <div class="tap">Una más...</div>
+</section>
+
+<!-- 15 FOTO 7 -->
+
+<section class="layer photo-layer" id="layer15">
+    <div class="photo-frame" style="transform:rotate(2deg)" onclick="goNext()">
+        <img src="mi7.jpg" alt="Milena">
+    </div>
+    <div class="photo-number">MILENA · 07</div>
+    <div class="tap">La última fotografía</div>
+</section>
+
+<!-- 16 CARTA -->
+
+<section class="layer" id="layer16">
+    <div class="letter">
+        <div class="eyebrow">Una pequeña carta</div>
+
+```
+    <h2>Milena...</h2>
+
+    <p>
+        No sé exactamente en qué momento empezaste
+        a llamar mi atención de esta manera.
+    </p>
+
+    <p>
+        Primero fueron pequeños detalles.
+        Después las ganas de hablar contigo.
+        Y poco a poco apareció esa curiosidad bonita
+        de querer conocerte mucho más.
+    </p>
+
+    <p>
+        No quiero adelantar una historia que recién comienza.
+        Prefiero disfrutar cada conversación,
+        cada sonrisa y cada momento.
+    </p>
+
+    <p>
+        Solo quería que supieras que hay alguien
+        que te mira con muchísimo cariño
+        y que disfruta cada vez más descubrir
+        quién es Milena.
+    </p>
+
+    <div class="signature">
+        Sin prisa.
+    </div>
+
+    <br>
+
+    <button class="btn gold" onclick="goNext()">
+        Hay una última cosa...
+    </button>
+</div>
+```
+
+</section>
+
+<!-- 17 JUEGO -->
+
+<section class="layer" id="layer17">
+    <div class="question-card">
+        <div class="eyebrow">La pregunta importante</div>
+
+```
+    <h2>
+        ¿Y si seguimos<br>
+        conociéndonos?
+    </h2>
+
+    <p class="subtitle">
+        Prometo no correr demasiado... 😌
+    </p>
+
+    <div class="options">
+        <button class="btn gold" onclick="finalYes()">
+            Sí ✨
+        </button>
+
+        <button class="btn" id="thinkBtn">
+            Déjame pensarlo 😂
+        </button>
+    </div>
+</div>
+```
+
+</section>
+
+<!-- FINAL -->
+
+<section class="layer" id="finalLayer">
+    <div class="content">
+        <div class="eyebrow">Y eso era todo...</div>
+
+```
+    <div class="final-title">
+        Milena
+    </div>
+
+    <div class="gold-line"></div>
+
+    <div class="final-small">
+        ME GUSTAS.
+    </div>
+
+    <p class="final-text">
+        Y mucho.<br><br>
+
+        No sé qué pasará mañana.
+        No quiero adelantar una historia que recién comienza.
+        Solo sé que me gustas, que disfruto tenerte cerca
+        y que me gustaría seguir conquistándote,
+        poco a poco.
+    </p>
+
+    <div class="script">
+        Sin prisa ✨
+    </div>
+</div>
+```
+
+</section>
+
+<script>
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+let currentLayer = 1;
+const totalLayers = 17;
+
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+function startExperience(){
+    music.volume = 0.55;
+    music.play().catch(()=>{});
+    goNext();
+}
+
+function showLayer(next){
+    const oldLayer = document.getElementById(
+        "layer" + currentLayer
+    );
+
+    const newLayer = document.getElementById(
+        next === "final" ? "finalLayer" : "layer" + next
+    );
+
+    if(!newLayer) return;
+
+    oldLayer.classList.remove("active");
+    oldLayer.classList.add("leaving");
+
+    setTimeout(()=>{
+        oldLayer.classList.remove("leaving");
+        newLayer.classList.add("active");
+    },500);
+
+    if(next === "final"){
+        document.getElementById("current").textContent = "∞";
+    }else{
+        currentLayer = next;
+        document.getElementById("current").textContent =
+            String(currentLayer).padStart(2,"0");
     }
-  </script>
+}
 
-  <script type="module">
-    import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+function goNext(){
+    if(currentLayer < totalLayers){
+        showLayer(currentLayer + 1);
+    }
+}
 
-    const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x000000, 0.0015);
+function goBack(){
+    if(currentLayer > 1){
+        showLayer(currentLayer - 1);
+    }
+}
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 4, 18); 
+/* SOBRE */
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.outputColorSpace = THREE.SRGBColorSpace;
-    document.getElementById('container').appendChild(renderer.domElement);
+let envelopeOpened = false;
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.autoRotate = false; 
-    controls.enabled = false; 
+function openEnvelope(){
+    if(envelopeOpened) return;
 
-    const textureLoader = new THREE.TextureLoader();
+    envelopeOpened = true;
 
+    document.getElementById("envelope")
+        .classList.add("open");
 
-    const flowerExplosionGroup = new THREE.Group();
-    scene.add(flowerExplosionGroup);
-    const explFlowers = [];
-    const fUrls = ["flor1.png", "flor2.png", "flor3.png", "flor4.png", "flor5.png", "flor6.png", "flor7.png"];
-    
-    fUrls.forEach(url => {
-      for(let k=0; k<15; k++) { 
-        const tex = textureLoader.load(url);
-        tex.colorSpace = THREE.SRGBColorSpace; 
-        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
-        
-        sprite.position.set(
-          (Math.random() - 0.5) * 150,
-          (Math.random() - 0.5) * 150,
-          - (Math.random() * 400) 
+    setTimeout(()=>{
+        goNext();
+    },1100);
+}
+
+/* BOTÓN DE MÚSICA */
+
+musicBtn.addEventListener("click",(e)=>{
+    e.stopPropagation();
+
+    if(music.paused){
+        music.play().catch(()=>{});
+        musicBtn.textContent = "♫";
+    }else{
+        music.pause();
+        musicBtn.textContent = "Ⅱ";
+    }
+});
+
+/* =========================
+   BOTÓN "DÉJAME PENSARLO"
+========================= */
+
+const thinkBtn = document.getElementById("thinkBtn");
+
+let thinkCount = 0;
+
+thinkBtn.addEventListener("mouseenter",moveThinkButton);
+thinkBtn.addEventListener("touchstart",moveThinkButton);
+
+function moveThinkButton(){
+
+    thinkCount++;
+
+    if(thinkCount <= 4){
+
+        const x =
+            (Math.random() * 180) - 90;
+
+        const y =
+            (Math.random() * 100) - 50;
+
+        thinkBtn.style.transform =
+            `translate(${x}px,${y}px)`;
+    }else{
+
+        thinkBtn.textContent =
+            "Bueno... está bien 😂";
+
+        thinkBtn.style.transform =
+            "translate(0,0)";
+
+        thinkBtn.onclick = finalYes;
+    }
+}
+
+/* =========================
+   FINAL
+========================= */
+
+function finalYes(){
+
+    showLayer("final");
+
+    createConfetti();
+}
+
+/* =========================
+   CONFETTI DORADO
+========================= */
+
+function createConfetti(){
+
+    for(let i=0;i<100;i++){
+
+        const piece = document.createElement("div");
+
+        piece.style.position = "fixed";
+        piece.style.left = "50%";
+        piece.style.top = "50%";
+        piece.style.width = "5px";
+        piece.style.height = "9px";
+        piece.style.background =
+            Math.random() > .5 ? "#e9c878" : "#fff0b0";
+        piece.style.zIndex = "50";
+        piece.style.pointerEvents = "none";
+
+        document.body.appendChild(piece);
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const distance =
+            150 + Math.random() * 450;
+
+        const x =
+            Math.cos(angle) * distance;
+
+        const y =
+            Math.sin(angle) * distance;
+
+        piece.animate([
+            {
+                transform:"translate(-50%,-50%) rotate(0deg)",
+                opacity:1
+            },
+            {
+                transform:
+                    `translate(${x}px,${y}px) rotate(${Math.random()*720}deg)`,
+                opacity:0
+            }
+        ],{
+            duration:1300 + Math.random()*900,
+            easing:"cubic-bezier(.15,.7,.2,1)"
+        });
+
+        setTimeout(()=>{
+            piece.remove();
+        },2300);
+    }
+}
+
+/* =========================
+   TECLADO
+========================= */
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key === "ArrowRight" ||
+       e.key === "Enter"){
+
+        if(currentLayer === 2){
+            openEnvelope();
+        }else{
+            goNext();
+        }
+    }
+
+    if(e.key === "ArrowLeft"){
+        goBack();
+    }
+});
+
+/* =========================
+   FLORES
+========================= */
+
+const flowerFiles = [
+    "4.png",
+    "5.png",
+    "6.png",
+    "7.png",
+    "8.png",
+    "flor.png",
+    "flor1.png",
+    "flor2.png",
+    "flor3.png",
+    "flor4.png",
+    "flor5.png",
+    "flor6.png",
+    "flor7.png"
+];
+
+const flowersContainer =
+    document.getElementById("flowers");
+
+function createFlowers(){
+
+    for(let i=0;i<16;i++){
+
+        const flower =
+            document.createElement("img");
+
+        flower.className = "flower";
+
+        flower.src =
+            flowerFiles[
+                Math.floor(
+                    Math.random()*flowerFiles.length
+                )
+            ];
+
+        flower.style.left =
+            Math.random()*100 + "%";
+
+        flower.style.animationDuration =
+            (12 + Math.random()*18) + "s";
+
+        flower.style.animationDelay =
+            (-Math.random()*20) + "s";
+
+        flower.style.opacity =
+            .35 + Math.random()*.4;
+
+        flower.style.transform =
+            `scale(${.5+Math.random()*.7})`;
+
+        flowersContainer.appendChild(flower);
+    }
+}
+
+createFlowers();
+
+/* =========================
+   GALAXIA CANVAS
+   NO DEPENDE DE LIBRERÍAS
+========================= */
+
+const canvas =
+    document.getElementById("galaxy");
+
+const ctx =
+    canvas.getContext("2d");
+
+let stars = [];
+let particles = [];
+
+function resizeCanvas(){
+
+    canvas.width =
+        window.innerWidth *
+        Math.min(window.devicePixelRatio,1.5);
+
+    canvas.height =
+        window.innerHeight *
+        Math.min(window.devicePixelRatio,1.5);
+
+    canvas.style.width =
+        window.innerWidth + "px";
+
+    canvas.style.height =
+        window.innerHeight + "px";
+
+    ctx.setTransform(
+        Math.min(window.devicePixelRatio,1.5),
+        0,0,
+        Math.min(window.devicePixelRatio,1.5),
+        0,0
+    );
+
+    createStars();
+}
+
+function createStars(){
+
+    stars = [];
+
+    const amount =
+        window.innerWidth < 700 ? 900 : 1500;
+
+    for(let i=0;i<amount;i++){
+
+        stars.push({
+            x:Math.random()*window.innerWidth,
+            y:Math.random()*window.innerHeight,
+            r:Math.random()*1.4,
+            a:.2+Math.random()*.8,
+            speed:.05+Math.random()*.3
+        });
+    }
+}
+
+function drawGalaxy(){
+
+    ctx.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
+
+    /* fondo */
+
+    const gradient =
+        ctx.createRadialGradient(
+            window.innerWidth/2,
+            window.innerHeight/2,
+            0,
+            window.innerWidth/2,
+            window.innerHeight/2,
+            Math.max(window.innerWidth,window.innerHeight)
         );
-        
-        const s = Math.random() * 2.5 + 1.5;
-        sprite.scale.set(s, s, 1);
-        
-        flowerExplosionGroup.add(sprite);
-        explFlowers.push(sprite);
-      }
+
+    gradient.addColorStop(0,"#1a0d28");
+    gradient.addColorStop(.4,"#090512");
+    gradient.addColorStop(1,"#020106");
+
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
+
+    /* estrellas */
+
+    stars.forEach(star=>{
+
+        star.y += star.speed;
+
+        if(star.y > window.innerHeight){
+            star.y = 0;
+        }
+
+        ctx.beginPath();
+
+        ctx.arc(
+            star.x,
+            star.y,
+            star.r,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle =
+            `rgba(255,235,170,${star.a})`;
+
+        ctx.fill();
     });
 
-    const galaxyGroup = new THREE.Group();
-    scene.add(galaxyGroup);
-    galaxyGroup.visible = false; 
-    galaxyGroup.scale.set(0, 0, 0); 
+    /* núcleo */
 
-    function createGlowMaterial(color, size = 128) {
-      const canvas = document.createElement('canvas');
-      canvas.width = canvas.height = size;
-      const context = canvas.getContext('2d');
-      const gradient = context.createRadialGradient(size/2, size/2, 0, size/2, size/2, size/2);
-      gradient.addColorStop(0, color);
-      gradient.addColorStop(1, 'rgba(0,0,0,0)');
-      context.fillStyle = gradient;
-      context.fillRect(0, 0, size, size);
-      return new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true, blending: THREE.AdditiveBlending }));
-    }
+    const cx =
+        window.innerWidth/2;
 
-    const centralGlow = createGlowMaterial('rgba(255, 230, 100, 0.8)', 256);
-    centralGlow.scale.set(8, 8, 1);
-    galaxyGroup.add(centralGlow); 
+    const cy =
+        window.innerHeight/2;
 
-    for (let i = 0; i < 15; i++) {
-      const hue = 40 + Math.random() * 25;
-      const nebula = createGlowMaterial(`hsla(${hue}, 100%, 50%, 0.3)`, 256);
-      nebula.scale.set(10 + Math.random() * 20, 10 + Math.random() * 20, 1);
-      nebula.position.set((Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40, (Math.random() - 0.5) * 40);
-      galaxyGroup.add(nebula); 
-    }
+    const glow =
+        ctx.createRadialGradient(
+            cx,cy,0,
+            cx,cy,Math.min(window.innerWidth,window.innerHeight)*.38
+        );
 
-    const galaxyParams = {
-      count: 100000, arms: 4, radius: 10, spin: 2, randomness: 0.3, randomnessPower: 3,
-      insideColor: new THREE.Color(0xffcc00), 
-      outsideColor: new THREE.Color(0xffff66) 
-    };
+    glow.addColorStop(0,"rgba(216,140,165,.13)");
+    glow.addColorStop(.3,"rgba(110,60,150,.07)");
+    glow.addColorStop(1,"rgba(0,0,0,0)");
 
-    const positions = new Float32Array(galaxyParams.count * 3);
-    const colors = new Float32Array(galaxyParams.count * 3);
+    ctx.fillStyle = glow;
 
-    for (let i = 0; i < galaxyParams.count; i++) {
-      const i3 = i * 3;
-      const radius = Math.pow(Math.random(), galaxyParams.randomnessPower) * galaxyParams.radius;
-      const branchAngle = ((i % galaxyParams.arms) / galaxyParams.arms) * Math.PI * 2;
-      const totalAngle = branchAngle + (radius * galaxyParams.spin);
-      
-      positions[i3]     = Math.cos(totalAngle) * radius + (Math.random() - 0.5) * galaxyParams.randomness * radius;
-      positions[i3 + 1] = (Math.random() - 0.5) * galaxyParams.randomness * radius * 0.5;
-      positions[i3 + 2] = Math.sin(totalAngle) * radius + (Math.random() - 0.5) * galaxyParams.randomness * radius;
-      
-      const mixedColor = galaxyParams.insideColor.clone();
-      mixedColor.lerp(galaxyParams.outsideColor, radius / galaxyParams.radius);
-      mixedColor.multiplyScalar(0.7 + 0.3 * Math.random());
-      colors[i3] = mixedColor.r; colors[i3 + 1] = mixedColor.g; colors[i3 + 2] = mixedColor.b;
-    }
+    ctx.fillRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+    );
 
-    const galaxyGeom = new THREE.BufferGeometry();
-    galaxyGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    galaxyGeom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    const galaxyMat = new THREE.PointsMaterial({ size: 0.02, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending });
-    
-    const galaxy = new THREE.Points(galaxyGeom, galaxyMat);
-    galaxyGroup.add(galaxy);
+    requestAnimationFrame(drawGalaxy);
+}
 
- 
-    const starGeom = new THREE.BufferGeometry();
-    const starCount = 8000;
-    const starPositions = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount; i++) {
-      starPositions[i * 3] = (Math.random() - 0.5) * 400;
-      starPositions[i * 3 + 1] = (Math.random() - 0.5) * 400;
-      starPositions[i * 3 + 2] = (Math.random() - 0.5) * 400;
-    }
-    starGeom.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-    const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.5, transparent: true });
-    const stars = new THREE.Points(starGeom, starMat);
-    scene.add(stars);
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
 
-  
-    const cometGroup = new THREE.Group();
-    scene.add(cometGroup);
-    const comets = [];
+resizeCanvas();
+drawGalaxy();
+</script>
 
-    function createCometMesh() {
-      const group = new THREE.Group();
-      const head = new THREE.Mesh(
-        new THREE.SphereGeometry(0.15, 8, 8),
-        new THREE.MeshBasicMaterial({ color: 0xffffee })
-      );
-      group.add(head);
-      
-      const tailGeo = new THREE.ConeGeometry(0.2, 8, 8);
-      tailGeo.translate(0, -4, 0);
-      const tail = new THREE.Mesh(
-        tailGeo,
-        new THREE.MeshBasicMaterial({ 
-          color: 0xffff88, 
-          transparent: true, opacity: 0.4, 
-          blending: THREE.AdditiveBlending, depthWrite: false 
-        })
-      );
-      group.add(tail);
-      return group;
-    }
-
-    function resetComet(comet) {
-      comet.position.set(
-        (Math.random() - 0.5) * 300,
-        150 + Math.random() * 100, 
-        (Math.random() - 0.5) * 300
-      );
-      comet.userData.velocity = new THREE.Vector3(
-        (Math.random() - 0.5) * 3,
-        - (Math.random() * 2 + 2),
-        (Math.random() - 0.5) * 3
-      ).normalize().multiplyScalar(Math.random() * 3 + 2); 
-      comet.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), comet.userData.velocity.clone().normalize());
-    }
-
-    for(let i = 0; i < 12; i++) { 
-      const c = createCometMesh();
-      resetComet(c);
-      cometGroup.add(c);
-      comets.push(c);
-    }
-
-
-    const heartCount = 15000;
-    const hPos = new Float32Array(heartCount * 3);
-    const hCol = new Float32Array(heartCount * 3);
-    for(let i=0; i < heartCount; i++) {
-      const t = Math.PI * 2 * Math.random();
-      let x = 16 * Math.pow(Math.sin(t), 3);
-      let y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
-      let z = (Math.random() - 0.5) * 3;
-      
-      const scale = 0.15, noise = 0.4;
-      hPos[i*3] = x * scale + (Math.random() - 0.5) * noise;
-      hPos[i*3+1] = y * scale + (Math.random() - 0.5) * noise;
-      hPos[i*3+2] = z * scale + (Math.random() - 0.5) * noise;
-
-      const mixedColor = galaxyParams.insideColor.clone();
-      mixedColor.lerp(galaxyParams.outsideColor, Math.random());
-      hCol[i*3] = mixedColor.r; hCol[i*3+1] = mixedColor.g; hCol[i*3+2] = mixedColor.b;
-    }
-    const heartGeom = new THREE.BufferGeometry();
-    heartGeom.setAttribute('position', new THREE.BufferAttribute(hPos, 3));
-    heartGeom.setAttribute('color', new THREE.BufferAttribute(hCol, 3));
-    const heartParticles = new THREE.Points(heartGeom, galaxyMat);
-    heartParticles.position.set(0, 4, 0);
-    heartParticles.scale.set(0, 0, 0); 
-    scene.add(heartParticles);
-
- 
-    function createElegantText(message) {
-      const canvas = document.createElement('canvas');
-      canvas.width = 800; canvas.height = 160;
-      const ctx = canvas.getContext('2d');
-      ctx.font = "italic bold 65px 'Georgia', serif"; 
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.shadowColor = "#ffcc00";
-      ctx.shadowBlur = 20;
-      ctx.fillStyle = "#ffffff";
-      ctx.fillText(message, 400, 80);
-      return new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true }));
-    }
-
-    const mainText = createElegantText("Te amo 💛🌻");
-    mainText.position.set(0, 4, 0);
-    mainText.scale.set(0, 0, 0); 
-    scene.add(mainText);
-
-    const orbitGroup = new THREE.Group();
-    scene.add(orbitGroup);
-
-    function createSmallTextSprite(message) {
-      const canvas = document.createElement('canvas');
-      canvas.width = 700; canvas.height = 140;
-      const context = canvas.getContext('2d');
-      context.font = "bold 45px Arial";
-      context.textAlign = "center";
-      context.textBaseline = "middle";
-      context.fillStyle = "#ffffff";
-      context.shadowColor = "#ffaa00";
-      context.shadowBlur = 10;
-      context.fillText(message, canvas.width / 2, canvas.height / 2);
-      return new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvas), transparent: true }));
-    }
-
-    const romanticTexts = [
-      "Amor de mi vida 💛", "Eres preciosa 🌻", "Me encantas 🌼", "Mi Amor 💛", 
-      "Eres mi todo 🌻", "Te Amo ☀️", "Siempre juntos 💛", "Eres mi sol 🌻", 
-      "Eres única 🌼", "Te adoro 💛", "My Love 🌻", "Amor de mi vida 💛", 
-      "Eres preciosa 🌻", "Me encantas 🌼", "Mi Amor 💛", "Eres mi todo 🌻", 
-      "Te Amo ☀️", "Siempre juntos 💛", "Eres mi sol 🌻", "Eres única 🌼", 
-      "Te adoro 💛", "My Love 🌻"
-    ];
-    
-    const imageUrls = [
-      "4.png", 
-      "5.png",
-      "6.png",
-      "7.png",
-      "8.png",
-    ];
-
-    const totalOrbiters = romanticTexts.length + imageUrls.length;
-
-    for (let i = 0; i < totalOrbiters; i++) {
-      const radius = 6.0 + (i % 3) * 0.8; 
-      const angle = (i / totalOrbiters) * Math.PI * 2;
-      const heights = [-2.5, -0.8, 0.8, 2.5];
-      const yPos = heights[i % 4] + (Math.random() * 0.4 - 0.2);
-
-      let orbiter;
-      
-      if (i % 2 === 0) {
-        const textIndex = Math.floor(i / 2) % romanticTexts.length;
-        orbiter = createSmallTextSprite(romanticTexts[textIndex]);
-        orbiter.scale.set(4.5, 0.9, 1);
-      } else {
-        const imgIndex = Math.floor(i / 2) % imageUrls.length;
-        const tex = textureLoader.load(imageUrls[imgIndex]);
-        tex.colorSpace = THREE.SRGBColorSpace; 
-        
-        orbiter = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex }));
-        orbiter.scale.set(1.5, 1.5, 1);
-        
-        orbiter.userData = {
-          esClickeable: true,
-          cartaUrl: `carta${imgIndex + 1}.png`
-        };
-      }
-
-      orbiter.position.set(Math.cos(angle)*radius, yPos, Math.sin(angle)*radius);
-      orbitGroup.add(orbiter);
-    }
-    orbitGroup.scale.set(0, 0, 0);
-
-    const raycaster = new THREE.Raycaster();
-    const mouse = new THREE.Vector2();
-    const modalCarta = document.getElementById('modalCarta');
-    const cartaImg = document.getElementById('cartaImg');
-    const cerrarModal = document.getElementById('cerrarModal');
-    let isModalOpen = false;
-
-    window.addEventListener('pointerdown', (event) => {
-      if(isModalOpen) return; 
-
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      raycaster.setFromCamera(mouse, camera);
-
-      const intersects = raycaster.intersectObjects(orbitGroup.children);
-
-      if (intersects.length > 0) {
-        const objetoTocado = intersects[0].object;
-        
-        if (objetoTocado.userData && objetoTocado.userData.esClickeable) {
-          abrirCarta(objetoTocado.userData.cartaUrl);
-        }
-      }
-    });
-
-    function abrirCarta(url) {
-      cartaImg.src = url;
-      modalCarta.classList.add('show');
-      isModalOpen = true;
-      controls.enabled = false;
-    }
-
-    cerrarModal.addEventListener('click', () => {
-      modalCarta.classList.remove('show');
-      isModalOpen = false;
-      setTimeout(() => { cartaImg.src = ""; }, 300); 
-      if (stage === 3) controls.enabled = true;
-    });
-
-
-   
-    const clock = new THREE.Clock();
-    let stage = 0; 
-    let timeProgress = 0;
-
-    function easeOutCubic(x) {
-      return 1 - Math.pow(1 - x, 3);
-    }
-
-    function animate() {
-      requestAnimationFrame(animate);
-      const delta = Math.min(clock.getDelta(), 0.1); 
-      const time = clock.getElapsedTime();
-
-      comets.forEach(comet => {
-        comet.position.add(comet.userData.velocity);
-        if (comet.position.y < -200 || Math.abs(comet.position.x) > 300 || Math.abs(comet.position.z) > 300) {
-          resetComet(comet);
-        }
-      });
-
-      if (stage === 0) {
-        timeProgress += delta * 0.3; 
-        
-        const pos = stars.geometry.attributes.position.array;
-        for(let i = 2; i < pos.length; i += 3) {
-          pos[i] += 25; 
-          if(pos[i] > 100) {
-            pos[i] = -200; 
-            pos[i-1] = (Math.random() - 0.5) * 400;
-            pos[i-2] = (Math.random() - 0.5) * 400;
-          }
-        }
-        stars.geometry.attributes.position.needsUpdate = true;
-
-        explFlowers.forEach(sprite => {
-          sprite.position.z += 25; 
-          if (sprite.position.z > 50) { 
-            sprite.position.z = -200 - Math.random() * 100;
-            sprite.position.x = (Math.random() - 0.5) * 150;
-            sprite.position.y = (Math.random() - 0.5) * 150;
-          }
-        });
-
-        if (timeProgress >= 1) {
-          stage = 1;
-          timeProgress = 0;
-          galaxyGroup.visible = true; 
-        }
-      } 
-      else if (stage === 1) {
-        timeProgress += delta * 0.5; 
-        const scale = easeOutCubic(Math.min(timeProgress, 1));
-        
-        galaxyGroup.scale.set(scale, scale, scale);
-
-        const speed = 25 * (1 - scale);
-        
-        const pos = stars.geometry.attributes.position.array;
-        for(let i = 2; i < pos.length; i += 3) {
-          pos[i] += speed > 0.1 ? speed : 0;
-          if(pos[i] > 100) pos[i] = -200;
-        }
-        stars.geometry.attributes.position.needsUpdate = true;
-
-        explFlowers.forEach(sprite => {
-          sprite.position.z += speed > 0.1 ? speed : 0;
-          if (sprite.position.z > 50) {
-            sprite.position.z = -200 - Math.random() * 100;
-            sprite.position.x = (Math.random() - 0.5) * 150;
-            sprite.position.y = (Math.random() - 0.5) * 150;
-          }
-        });
-
-        if (timeProgress >= 1) {
-          stage = 2;
-          timeProgress = 0;
-        }
-      } 
-      else if (stage === 2) {
-        timeProgress += delta * 0.8; 
-        const scale = easeOutCubic(Math.min(timeProgress, 1));
-        
-        heartParticles.scale.set(scale, scale, scale);
-        orbitGroup.scale.set(scale, scale, scale);
-        mainText.scale.set(5 * scale, 1 * scale, 1); 
-
-        explFlowers.forEach(sprite => {
-          sprite.position.applyAxisAngle(new THREE.Vector3(0,1,0), 0.001);
-        });
-
-        if (timeProgress >= 1) {
-          stage = 3;
-          if(!isModalOpen) controls.enabled = true; 
-        }
-      }
-
-      if (!isModalOpen) {
-        if (stage >= 1) galaxyGroup.rotation.y += 0.001;
-        if (stage >= 2) orbitGroup.rotation.y += 0.001;
-
-        if (stage === 3) {
-           stars.rotation.y += 0.0002; 
-           
-           const pulse = 1 + Math.sin(time * 2.5) * 0.03;
-           heartParticles.scale.set(pulse, pulse, pulse);
-           heartParticles.position.y = 4 + Math.sin(time) * 0.2;
-           mainText.position.y = 4 + Math.sin(time) * 0.2;
-           
-           explFlowers.forEach(sprite => {
-             sprite.position.applyAxisAngle(new THREE.Vector3(0,1,0), 0.001);
-           });
-        }
-      }
-
-      controls.update();
-      renderer.render(scene, camera);
-    }
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    animate();
-  </script>
 </body>
-
-
-  <!--
-
-Contáctame:
-
-   * Crea tus diseños sin código
- https://comparte-amor.vercel.app/
-
-    * Invitame un café
- https://buymeacoffee.com/alexx.dev
-
-    * Portafolio Web
- https://alexxdev.vercel.app
-
-    * Sigueme en tiktok
- https://www.tiktok.com/@alexx.dev?is_from_webapp=1&sender_device=pc
- 
-    * Canal de WhatsApp
- https://whatsapp.com/channel/0029VazQEXq90x2vIdNkrH1p
-
- 
-   * WhatsApp: +52 5587450945
-https://wa.me/525568916053
-
-
--->
-
 </html>
